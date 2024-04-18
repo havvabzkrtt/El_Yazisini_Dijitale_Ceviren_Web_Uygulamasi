@@ -13,42 +13,56 @@ import prediction
 
 
 # read image, prepare it by resizing it to fixed height and converting it to grayscale
-img = cv2.imread('./sablon_form/form_sablon1.png') 
+img = cv2.imread('./sablon_form/form_sablon2.PNG') 
 
 segment_line_list = line_segmentation.line_segment(img)
+
+
 def display_image(image):
     plt.imshow(image, cmap='gray')
     plt.axis('off')
     plt.show()
-"""
+
 # bu şekilde çalışıyor ama kötü tahmin ediyor, model ile alakalı olmalı  / # resim path'ten okumuyorsa
 for line in segment_line_list:
-    display_image(line)
+    #display_image(line)
     print(type(line))
     # Görüntüyü gri tonlamalı hale getirme
     # Veriyi PNG dosyasına kaydetmek için matplotlib'i kullanalım
+    """
     plt.imsave("./outputs/cikti1.png", line, cmap='gray') 
     resim_yolu = "./outputs/cikti1.PNG"            
     resim = cv2.imread(resim_yolu)
-    donusturulmus_resim = convert_and_letter_segmentation.convert_img(resim)
+    """
+    #resim_yolu = "./test_data/AHMET.PNG"    
+    resim_yolu = "./test_data/Servet1.PNG"        
+    resim = cv2.imread(resim_yolu)
+    cv2.imshow("LineSegment Resim",line)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+    donusturulmus_resim = convert_and_letter_segmentation.convert_img(line)
     components = convert_and_letter_segmentation.letter_segment(donusturulmus_resim)
+
+    labelll = prediction.label_list(components)
+    print("abel--------------------------------", labelll)
+    print(components[0].shape) 
+    labels = prediction.label_list(components)
+    print(labels)
     break
-    
-
-# resim segment_line_list'ten değişikliğe uğramadan direkt geliyorsa 
-
-# Dönüştürülmüş resmi göster
-
-cv2.imshow("Dönüştürülmemiş Resim", resim)
-cv2.imshow("Dönüştürülmüş----------------- Resim", donusturulmus_resim)
-# cv2.imwrite("donusmus_resim.png", donusturulmus_resim)
+     
+cv2.imshow("LineSegment Resim",segment_line_list[1])
 cv2.waitKey(0)
 cv2.destroyAllWindows()
+donusturulmus_resim = convert_and_letter_segmentation.convert_img(segment_line_list[1])
+components = convert_and_letter_segmentation.letter_segment(donusturulmus_resim)
 
-"""
-i = 0
+labelll2 = prediction.label_list(components)
+print("Label2--------------------------------", labelll2)
+
+
 
 # TAHMİNLER ÇOK KÖTÜ
+"""
 for line in segment_line_list:
     donusturulmus_resim = convert_and_letter_segmentation.convert_img(line)
     components = convert_and_letter_segmentation.letter_segment(donusturulmus_resim)
@@ -58,7 +72,7 @@ for line in segment_line_list:
     print(i,". label: ", labels)
     i =+ 1
     break
-
+"""
 # Dönüştürülmüş resmi göster
 """
 cv2.imshow("Dönüştürülmemiş Resim", segment_line_list[0])
@@ -67,21 +81,6 @@ cv2.imshow("Dönüştürülmüş----------------- Resim", donusturulmus_resim)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 """
-
-# dönüsüm icin calisan kısımlar 
-
-# Resmi yükle
-"""
-resim_yolu = "cikti.PNG"            
-resim = cv2.imread(resim_yolu)
-print(resim)
-print(type(resim))
-
-donusturulmus_resim = convert_and_letter_segmentation.convert_img(resim)
-
-components = convert_and_letter_segmentation.letter_segment(donusturulmus_resim)
-"""
-
 
 
 

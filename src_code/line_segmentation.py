@@ -11,7 +11,6 @@ import warnings
 
 
 import os
-# print(os.listdir("input"))
 import warnings
 warnings.filterwarnings('ignore')
 #%matplotlib inline
@@ -29,9 +28,7 @@ def showImg(img, cmap=None):
     plt.show()
 
 
-# read image, prepare it by resizing it to fixed height and converting it to grayscale
-# img = cv2.imread('./sablon_form/form_sablon1.png') 
-# showImg(img, cmap='gray')
+
 
 
 def createKernel(kernelSize, sigma, theta):
@@ -137,6 +134,7 @@ def transpose_lines(lines):
     return res
 
 def line_segment(img1):
+    print("hata yok")
     img2 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
     # print(img2.shape)
     img3 = np.transpose(img2)
@@ -147,7 +145,7 @@ def line_segment(img1):
     summ = applySummFunctin(img4)
     # print(summ.ndim)
     # print(summ.shape)
-    windows=['flat', 'hanning', 'hamming', 'bartlett', 'blackman']
+    #windows=['flat', 'hanning', 'hamming', 'bartlett', 'blackman']
     smoothed = smooth(summ, 35)
     # plt.plot(smoothed)
     # plt.show()
@@ -171,8 +169,23 @@ def display_image(image):
     plt.axis('off')
     plt.show()
 
+
 """
-res_lines = line_segment(img)
+# read image, prepare it by resizing it to fixed height and converting it to grayscale
+img1 = cv2.imread("./sablon_form/form_sablon4.PNG")
+
+if img1 is None:
+    print("Dosya okunamadı. Lütfen dosyanın mevcut olduğundan ve uygun bir görüntü formatında olduğundan emin olun.")
+else:
+    img1 = img1.astype(np.uint8)
+
+res_lines = line_segment(img1)
+
+
+
+display_lines(res_lines, 'horizontal')
+
 for line in res_lines:
     display_image(line)
+
 """

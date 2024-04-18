@@ -8,10 +8,11 @@ from keras.preprocessing import image
 model = tf.keras.models.load_model('./models/model1.h5')  # Örnek dosya adı
 
 # Başka bir kod dosyasında CSV dosyasını okuma
-ascii_map = pd.read_csv('./mapping/mapping.csv')
+ascii_map = pd.read_csv('./mapping/emnis-balanced-mapping.csv')
 
 
 
+# componets listesi ile
 def list_predict_image(component):
     img = cv2.resize(component, (28, 28))
     x = np.expand_dims(img, axis=0)  # Batch boyutunu ekleyin
@@ -22,7 +23,15 @@ def list_predict_image(component):
 
     return ascii_map["Character"][cl.index(max(cl))]
 
+def label_list(image_list):
+    predicted_labels = []
+    for img in image_list:
+        predicted_label = list_predict_image(img)
+        predicted_labels.append(predicted_label)
+    return predicted_labels
 
+
+# image path ile 
 def imagepath_predict_image(image_path):
     img = image.load_img(image_path, target_size=(28, 28))
     x = image.img_to_array(img)
@@ -38,7 +47,8 @@ def imagepath_predict_image(image_path):
 
 etiket_list = []
     
-def label_list(image_list):
+
+def label_list_imagepath(image_list):
     predicted_labels = []
     for img in image_list:
         predicted_label = list_predict_image(img)
