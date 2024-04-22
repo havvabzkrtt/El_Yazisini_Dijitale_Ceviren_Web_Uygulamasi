@@ -12,9 +12,18 @@ import convert_and_letter_segmentation
 import prediction
 
 
-# read image, prepare it by resizing it to fixed height and converting it to grayscale
-img = cv2.imread('./sablon_form/form_sablon2.PNG') 
+# Ne kadar süre çalışıyor ve ne kadar bellek harcıyor
+import torch
+from datetime import datetime
+print("torch.cuda.memory_allocated: %fGB"%(torch.cuda.memory_allocated(0)/1024/1024/1024))
+start = datetime.now()
 
+
+
+# read image, prepare it by resizing it to fixed height and converting it to grayscale
+#img = cv2.imread('./sablon_form/form_sablon3.png') 
+img = cv2.imread('./sablon_form/form3.PNG') 
+#img = cv2.imread('./sablon_form/form2.jpg') 
 segment_line_list = line_segmentation.line_segment(img)
 
 
@@ -34,31 +43,51 @@ for line in segment_line_list:
     resim_yolu = "./outputs/cikti1.PNG"            
     resim = cv2.imread(resim_yolu)
     """
-    #resim_yolu = "./test_data/AHMET.PNG"    
-    resim_yolu = "./test_data/Servet1.PNG"        
-    resim = cv2.imread(resim_yolu)
     cv2.imshow("LineSegment Resim",line)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
     donusturulmus_resim = convert_and_letter_segmentation.convert_img(line)
     components = convert_and_letter_segmentation.letter_segment(donusturulmus_resim)
 
+    
+    for idx, component in enumerate(components, start=1):
+        cv2.imshow(f'Bileşen {idx}', component)
+        cv2.waitKey(0)  # Bir tuşa basılana kadar beklet
+        cv2.destroyAllWindows()  # Pencereyi kapat
+
     labelll = prediction.label_list(components)
     print("abel--------------------------------", labelll)
+    """
     print(components[0].shape) 
     labels = prediction.label_list(components)
     print(labels)
-    break
-     
-cv2.imshow("LineSegment Resim",segment_line_list[1])
+    """
+    
+
+#cv2.imshow("Donusmus Resim",donusturulmus_resim)
 cv2.waitKey(0)
+cv2.imshow("LineSegment Resim1",segment_line_list[0])
+cv2.waitKey(0)
+"""
+cv2.imshow("LineSegment Resim2",segment_line_list[1])
+cv2.waitKey(0)
+
+cv2.imshow("LineSegment Resim3",segment_line_list[2])
+cv2.waitKey(0)
+
+cv2.imshow("LineSegment Resim4",segment_line_list[3])
+cv2.waitKey(0)
+cv2.imshow("LineSegment Resim4",segment_line_list[4])
+cv2.waitKey(0)
+cv2.imshow("LineSegment Resim4",segment_line_list[5])
+cv2.waitKey(0)
+"""
 cv2.destroyAllWindows()
+"""
 donusturulmus_resim = convert_and_letter_segmentation.convert_img(segment_line_list[1])
 components = convert_and_letter_segmentation.letter_segment(donusturulmus_resim)
 
 labelll2 = prediction.label_list(components)
 print("Label2--------------------------------", labelll2)
-
+"""
 
 
 # TAHMİNLER ÇOK KÖTÜ
@@ -101,4 +130,12 @@ for i, component in enumerate(components, start=1):
 
 plt.show()
 """
+
+
+print("torch.cuda.memory_allocated: %fGB"%(torch.cuda.memory_allocated(0)/1024/1024/1024))
+end = datetime.now()
+delta = end - start
+print('Difference is seconds:', delta.total_seconds())
+exit()
+
 

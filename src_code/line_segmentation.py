@@ -8,6 +8,8 @@ import matplotlib.pyplot as plt
 import os
 import warnings
 
+import convert_and_letter_segmentation
+
 
 
 import os
@@ -135,7 +137,8 @@ def transpose_lines(lines):
 
 def line_segment(img1):
     print("hata yok")
-    img2 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
+    # img2 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
+    img2 = convert_and_letter_segmentation.convert_img2(img1)
     # print(img2.shape)
     img3 = np.transpose(img2)
     # showImg(img3, cmap='gray')
@@ -172,20 +175,19 @@ def display_image(image):
 
 """
 # read image, prepare it by resizing it to fixed height and converting it to grayscale
-img1 = cv2.imread("./sablon_form/form_sablon4.PNG")
+img = cv2.imread("./sablon_form/form_sablon2.PNG")
 
-if img1 is None:
+
+if img is None:
     print("Dosya okunamadı. Lütfen dosyanın mevcut olduğundan ve uygun bir görüntü formatında olduğundan emin olun.")
 else:
-    img1 = img1.astype(np.uint8)
+    img = img.astype(np.uint8)
+  
 
-res_lines = line_segment(img1)
-
-
+res_lines = line_segment(img)
 
 display_lines(res_lines, 'horizontal')
 
 for line in res_lines:
     display_image(line)
-
-"""
+   """

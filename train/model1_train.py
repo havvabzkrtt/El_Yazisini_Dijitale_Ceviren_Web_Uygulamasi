@@ -7,6 +7,14 @@ from keras.models import Sequential,load_model
 import keras
 
 
+# Ne kadar süre çalışıyor ve ne kadar bellek harcıyor
+import torch
+from datetime import datetime
+print("torch.cuda.memory_allocated: %fGB"%(torch.cuda.memory_allocated(0)/1024/1024/1024))
+start = datetime.now()
+
+
+
 train_images = pd.read_csv("datasets/emnist-balanced-train.csv",header=None)
 test_images = pd.read_csv("datasets/emnist-balanced-test.csv",header=None)
 map_images = pd.read_csv("datasets/emnist-balanced-mapping.txt",header=None) 
@@ -100,3 +108,10 @@ character = pd.DataFrame(character)
 ascii_map = pd.DataFrame(ascii_map)
 ascii_map["Character"] = character
 ascii_map.to_csv("mapping/emnis-balanced-mapping.csv",index=False,header=True)
+
+
+print("torch.cuda.memory_allocated: %fGB"%(torch.cuda.memory_allocated(0)/1024/1024/1024))
+end = datetime.now()
+delta = end - start
+print('Difference is seconds:', delta.total_seconds())
+exit()
