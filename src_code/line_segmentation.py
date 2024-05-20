@@ -26,7 +26,7 @@ def line_segment(image, num_rows):
 
     return row_images
 
-
+"""
 num_rows = 7
 
 # read image, prepare it by resizing it to fixed height and converting it to grayscale
@@ -50,3 +50,4 @@ for i, row_image in enumerate(res_lines):
     plt.title(f"Row {i + 1}")
 plt.tight_layout()
 plt.show()
+"""
