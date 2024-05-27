@@ -31,7 +31,6 @@ def process_line(line, row_index, indis_list):
         combined_label_number = "".join(map(str, label_number))
         return combined_label_number
     else:
-        print("HATAYOK3-----------------------")
         label = prediction.label_list(components)
         combined_label = "".join(label).title()
         return combined_label
@@ -57,10 +56,8 @@ def extract_info(img, num_rows, dict_indis, indis_list):
     return dictionary
 
 def form_uni_info(img):
-    print("HATAYOK0-----------------------")
     dict_indis = ["ID: ", "Name: ", "Surname: ", "University: ", "Faculty: ", "Department: ", "Student Number: "]
     indis_list = [0, 6]
-    print("HATAYOK2-----------------------")
     return extract_info(img, 7, dict_indis, indis_list)
 
 def personal_info(img):
@@ -74,7 +71,7 @@ def contact_info(img):
     return extract_info(img, 6, dict_indis, indis_list)
 
 
-img = cv2.imread('./sablon_form/form7.PNG') 
+img = cv2.imread('./sablon_form/uni_info1.PNG') 
 result_dict = form_uni_info(img)
 
 print("---------------------------------")

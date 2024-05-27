@@ -5,18 +5,17 @@ import numpy as np
 from keras.preprocessing import image
 
 # Önceden eğitilmiş modeli yükle
-model = tf.keras.models.load_model('./models/model1.h5')  # dosya adı
+model = tf.keras.models.load_model('./models/model_letters5.h5')  # dosya adı
 
 model_sayi = tf.keras.models.load_model('./models/model_sayilar2.h5') 
 
 # Başka bir kod dosyasında CSV dosyasını okuma
-ascii_map = pd.read_csv('./mapping/emnis-balanced-mapping.csv')
+ascii_map = pd.read_csv('./mapping/emnist-letters-mapping5.csv')
 # ascii_map_sayi = pd.read_csv('./mapping/emnis-mnist-mapping.csv')
 
 
 # componets listesi ile
 def list_predict_image(component):
-    print("Hatayok3----------------------------")
     img = cv2.resize(component, (28, 28))
     x = np.expand_dims(img, axis=0)  # Batch boyutunu ekleyin
     x = x / 255.0  # Normalizasyon
