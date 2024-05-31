@@ -6,15 +6,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 import tensorflow as tf
 
-#app.py için bu şekilde kullanılcak
-#from src_code.line_segmentation import line_segment 
-#from src_code.convert_and_letter_segmentation import convert_img, letter_segment
-#from src_code.prediction import label_list_number, label_list
+# app.py için bu şekilde kullanılcak
+from src_code.line_segmentation import line_segment 
+from src_code.convert_and_letter_segmentation import convert_img, letter_segment
+from src_code.prediction import label_list_number, label_list
 
-
-from line_segmentation import line_segment 
-from convert_and_letter_segmentation import convert_img, letter_segment
-from prediction import label_list_number, label_list
+# main.py ı çalıştırırken
+#from line_segmentation import line_segment 
+#from convert_and_letter_segmentation import convert_img, letter_segment
+#from prediction import label_list_number, label_list
 
 print("yoksa burda mı??????")
 # Ne kadar süre çalışıyor ve ne kadar bellek harcıyor
@@ -72,18 +72,22 @@ def contact_info(img):
     indis_list = [0, 3, 4, 5]
     return extract_info(img, 6, dict_indis, indis_list)
 
-
+"""
 img = cv2.imread('./sablon_form/uni_info1.PNG') 
 result_dict = form_uni_info(img)
-
-def process_image(form_type, image_path):
-    img=cv2.imread(image_path)
-    if form_type == "form1":  # Personal Info
+"""
+def process_image(form_type, img):
+    #cv2.imshow("LineSegment Resim", img)
+    #cv2.waitKey(0)
+    if form_type == "personal_info":  # Personal Info
         result = personal_info(img)
-    elif form_type == "form2":  # University Info
+        print(result)
+    elif form_type == "form_uni_info":  # University Info
         result = form_uni_info(img)
-    elif form_type == "form3":  # Contact Info
+        print(result)
+    elif form_type == "contact_info":  # Contact Info
         result = contact_info(img)
+        print(result)
     else:
         result = {"processed_data": "Geçersiz form türü."}
     
