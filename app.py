@@ -44,9 +44,9 @@ def upload():
             form_type = session.get('form_type')
             
             # Resmi işleyip sonucu alıyoruz
-            result = process_image(form_type, file_path)
+            img=cv2.imread(file_path)
+            result = process_image(form_type, img)
             print(type(result))
-            print("--------------------")
             print(result)
             return render_template('result.html', result=result)
 
