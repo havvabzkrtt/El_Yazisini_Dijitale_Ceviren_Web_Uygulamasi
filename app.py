@@ -1,8 +1,9 @@
-from flask import Flask, request, render_template, redirect, url_for, session
+from flask import Flask, request, render_template, redirect, url_for, session, send_file
 import os
 from werkzeug.utils import secure_filename
 from src_code.main import process_image  # process_image fonksiyonunu içe aktarıyoruz
 import cv2
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'  # Form verilerini saklamak için gerekli
@@ -43,14 +44,26 @@ def upload():
             surname = session.get('surname')
             form_type = session.get('form_type')
             
+            if form_type == 'personal_info':
+                selected_option_text = 'Personal Informations'
+            elif form_type == 'uni_info':
+                selected_option_text = 'University Informations'
+            elif form_type == 'address_info':
+                selected_option_text = 'Address Informations'
+
+
             # Resmi işleyip sonucu alıyoruz
             img=cv2.imread(file_path)
             result = process_image(form_type, img)
+        
             print(type(result))
             print(result)
+            result.update({"name": name, "surname": surname, "form_type": selected_option_text})
             return render_template('result.html', result=result)
 
     return render_template('upload.html')
 
+
 if __name__ == '__main__':
     app.run(debug=True)
+

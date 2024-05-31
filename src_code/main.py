@@ -56,10 +56,9 @@ def extract_info(img, num_rows, dict_indis, indis_list):
     print("Başarılı")
     return dictionary
 
-def form_uni_info(img):
+def uni_info(img):
     dict_indis = ["ID: ", "Name: ", "Surname: ", "University: ", "Faculty: ", "Department: ", "Student Number: "]
     indis_list = [0, 6]
-    print(extract_info(img, 7, dict_indis, indis_list))
     return extract_info(img, 7, dict_indis, indis_list)
 
 def personal_info(img):
@@ -67,14 +66,14 @@ def personal_info(img):
     indis_list = [0, 1, 3]
     return extract_info(img, 4, dict_indis, indis_list)
 
-def contact_info(img):
+def address_info(img):
     dict_indis = ["ID: ", "Country: ", "City: ", "Zipcode: ", "Street Number: ", "Apartment Number: "]
     indis_list = [0, 3, 4, 5]
     return extract_info(img, 6, dict_indis, indis_list)
 
 """
 img = cv2.imread('./sablon_form/uni_info1.PNG') 
-result_dict = form_uni_info(img)
+result_dict = uni_info(img)
 """
 def process_image(form_type, img):
     #cv2.imshow("LineSegment Resim", img)
@@ -82,11 +81,11 @@ def process_image(form_type, img):
     if form_type == "personal_info":  # Personal Info
         result = personal_info(img)
         print(result)
-    elif form_type == "form_uni_info":  # University Info
-        result = form_uni_info(img)
+    elif form_type == "uni_info":  # University Info
+        result = uni_info(img)
         print(result)
-    elif form_type == "contact_info":  # Contact Info
-        result = contact_info(img)
+    elif form_type == "address_info":  # Contact Info
+        result = address_info(img)
         print(result)
     else:
         result = {"processed_data": "Geçersiz form türü."}
