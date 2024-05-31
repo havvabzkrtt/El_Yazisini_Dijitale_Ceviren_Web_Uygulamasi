@@ -29,10 +29,10 @@
         </div>
         <h2 class="text-center">Sonuç</h2>
         <div class="mt-4">
-            <p><strong>Ad:</strong> {{ result.name }}</p>
-            <p><strong>Soyad:</strong> {{ result.surname }}</p>
-            <p><strong>Seçilen Form:</strong> {{ result.form_type }}</p>
-            <h4 class="mt-4">Model Tahmini:</h4>
+            <p><strong>Name:</strong> {{ result.name }}</p>
+            <p><strong>Surname:</strong> {{ result.surname }}</p>
+            <p><strong>Form:</strong> {{ result.form_type }}</p>
+            <h4 class="mt-4">Informations:</h4>
             <ul class="list-group mt-3">
                 {% for key, value in result.items() %}
                     {% if key not in ['name', 'surname', 'form_type'] %}
@@ -47,4 +47,5 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
 
