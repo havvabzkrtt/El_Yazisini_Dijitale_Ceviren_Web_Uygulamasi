@@ -7,15 +7,17 @@ import matplotlib.pyplot as plt
 import tensorflow as tf
 
 # app.py için bu şekilde kullanılcak
+
 from src_code.line_segmentation import line_segment 
 from src_code.convert_and_letter_segmentation import convert_img, letter_segment
 from src_code.prediction import label_list_number, label_list
 
 # main.py ı çalıştırırken
-#from line_segmentation import line_segment 
-#from convert_and_letter_segmentation import convert_img, letter_segment
-#from prediction import label_list_number, label_list
-
+"""
+from line_segmentation import line_segment 
+from convert_and_letter_segmentation import convert_img, letter_segment
+from prediction import label_list_number, label_list
+"""
 print("yoksa burda mı??????")
 # Ne kadar süre çalışıyor ve ne kadar bellek harcıyor
 
@@ -75,6 +77,8 @@ def address_info(img):
 img = cv2.imread('./sablon_form/uni_info1.PNG') 
 result_dict = uni_info(img)
 """
+
+
 def process_image(form_type, img):
     #cv2.imshow("LineSegment Resim", img)
     #cv2.waitKey(0)
