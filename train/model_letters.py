@@ -90,7 +90,7 @@ history = model.fit(
     epochs = 10, callbacks=[early_stopper]
 )
 
-model.save("models/model_letters5.h5")
+model.save("models/model_letters.h5")
 
 ascii_map = []
 for i in map_images.values:
@@ -108,7 +108,7 @@ character = pd.DataFrame(character)
 
 ascii_map = pd.DataFrame(ascii_map)
 ascii_map["Character"] = character
-ascii_map.to_csv("mapping/emnist-letters-mapping5.csv",index=False,header=True)
+ascii_map.to_csv("mapping/emnist-letters-mapping.csv",index=False,header=True)
 
 
 print("torch.cuda.memory_allocated: %fGB"%(torch.cuda.memory_allocated(0)/1024/1024/1024))
