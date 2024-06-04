@@ -29,10 +29,10 @@ def index():
 def upload():
     if request.method == 'POST':
         if 'file' not in request.files:
-            return "Dosya yüklenmedi"
+            return "File not uploaded!"
         file = request.files['file']
         if file.filename == '':
-            return "Dosya seçilmedi"
+            return "File not selected!"
 
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)

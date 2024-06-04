@@ -3,34 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resim Yükleme</title>
+    <title>Upload Image</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            background-color: #f0f8ff;
+    body {
+        background-color: #f5f5f5;  /* Hafif gri tonu */
+        color: #333333; /* Orta koyulukta gri */
+        font-family: Arial, sans-serif; /* Genel font ailesi */
+    }
+    .container {
+        background-color: #bbdefb;  /* Açık pastel mavi */
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .btn-primary {
+        background-color: #185486;  /* Açık pastel mavi */
+        color: #ffffff; /* Buton metin rengi gri */
+        padding: 10px 20px; /* Buton iç boşluğu */
+        border-radius: 5px; /* Buton kenar yuvarlaklığı */
+        cursor: pointer; /* İmleç değişimi */
+    }
+    .btn-primary:hover {
+            background-color: #185486;  /* Daha canlı pastel mavi hover rengi */
+            color: #fff; /* Buton metin rengi beyaz */
         }
-        .container {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+    
+    h1 {
+        font-size: 3em; /* Büyük font boyutu */
+        font-family: "Arial Black", sans-serif; /* Kalın ve çekici bir font */
+        text-shadow: 2px 2px 4px white; /* Hafif gölgelendirme */
+        color: #185486; /* Canlı mavi */
+        text-align: center; /* Başlık ortalanmış */
+    }
+    h2 {
+        color: #185486;
+        font-weight: bold;
+    }
+    p {
+        font-weight: bold;
+        color: #185486; /* Açık pastel mavi */
+    }
+    .form-group label {
+        font-weight: bold; /* Metni kalın yap */
+        color: #185486;/* Açık pastel mavi */
+    }
     </style>
 </head>
 <body>
     <div class="container mt-5">
         
-        <h2 class="text-center">Resim Yükleme</h2>
+        <h2 class="text-center">Image Upload</h2>
         <form action="/upload" method="post" enctype="multipart/form-data" class="mt-4">
             <div class="form-group">
-                <label for="file">Resim Yükleyiniz:</label>
+                <label for="file">Please upload image:</label>
                 <input type="file" id="file" name="file" class="form-control-file" accept="image/*" required>
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Yükle</button>
+            <button type="submit" class="btn btn-primary btn-block">Upload</button>
         </form>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
