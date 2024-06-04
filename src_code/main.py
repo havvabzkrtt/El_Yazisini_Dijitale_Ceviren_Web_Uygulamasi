@@ -21,8 +21,8 @@ from prediction import label_list_number, label_list
 
 def process_line(line, row_index, indis_list):
     convert_image = convert_img(line)
-    #cv2.imshow("Donusmus Resim", convert_image)
-    #cv2.waitKey(0)
+    # cv2.imshow("Donusmus Resim", convert_image)
+    # cv2.waitKey(0)
     components = letter_segment(convert_image)
 
     if row_index in indis_list:  # This list covers specific rows for numbers
@@ -67,7 +67,7 @@ def address_info(img):
     return extract_info(img, 6, dict_indis, indis_list)
 
 """
-img = cv2.imread('./sablon_form/uni_info1.PNG') 
+img = cv2.imread('./sablon_form/form8.PNG') 
 result_dict = uni_info(img)
 """
 
