@@ -7,7 +7,7 @@ from keras.preprocessing import image # type: ignore
 # Önceden eğitilmiş modeli yükle
 model = tf.keras.models.load_model('./models/letters_model.h5')  
 
-model_sayi = tf.keras.models.load_model('./models/numbers_model.h5')   # ÇALIŞIYOR
+model_sayi = tf.keras.models.load_model('./models/model_sayilar2.h5')   # DAHA İYİ ÇALIŞIYOR(model_sayilar2.h5)
 
 # Başka bir kod dosyasında CSV dosyasını okuma
 ascii_map = pd.read_csv('./mapping/emnist-letters-mapping5.csv')
