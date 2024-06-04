@@ -5,7 +5,7 @@ import numpy as np
 from keras.preprocessing import image # type: ignore
 
 # Önceden eğitilmiş modeli yükle
-model = tf.keras.models.load_model('./models/model_letters5.h5')  
+model = tf.keras.models.load_model('./models/letters_model.h5')  
 
 model_sayi = tf.keras.models.load_model('./models/numbers_model.h5')   # ÇALIŞIYOR
 
