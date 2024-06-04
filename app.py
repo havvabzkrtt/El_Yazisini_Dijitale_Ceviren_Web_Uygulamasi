@@ -3,6 +3,7 @@ import os
 from werkzeug.utils import secure_filename
 from src_code.main import process_image  # process_image fonksiyonunu içe aktarıyoruz
 import cv2
+import base64
 
 
 app = Flask(__name__)
@@ -28,38 +29,43 @@ def index():
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
     if request.method == 'POST':
-        if 'file' not in request.files:
-            return "File not uploaded!"
-        file = request.files['file']
-        if file.filename == '':
-            return "File not selected!"
+        if 'croppedImage' not in request.form:
+            return "Cropped image not uploaded!"
 
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            file.save(file_path)
-            
-            # Form bilgilerini session'dan alıyoruz
-            name = session.get('name')
-            surname = session.get('surname')
-            form_type = session.get('form_type')
-            
-            if form_type == 'personal_info':
-                selected_option_text = 'Personal Informations'
-            elif form_type == 'uni_info':
-                selected_option_text = 'University Informations'
-            elif form_type == 'address_info':
-                selected_option_text = 'Address Informations'
-
-
-            # Resmi işleyip sonucu alıyoruz
-            img=cv2.imread(file_path)
-            result = process_image(form_type, img)
+        cropped_image_data = request.form['croppedImage']
         
-            print(type(result))
-            print(result)
-            result.update({"name": name, "surname": surname, "form_type": selected_option_text})
-            return render_template('result.html', result=result)
+        if not cropped_image_data:
+            return "Cropped image data is missing!"
+
+        # Base64 verisini çöz ve resmi kaydet
+        cropped_image_data = cropped_image_data.split(',')[1]
+        cropped_image_bytes = base64.b64decode(cropped_image_data)
+        filename = secure_filename("cropped_image.jpg")
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        
+        with open(file_path, "wb") as f:
+            f.write(cropped_image_bytes)
+
+        # Form bilgilerini session'dan alıyoruz
+        name = session.get('name')
+        surname = session.get('surname')
+        form_type = session.get('form_type')
+        
+        if form_type == 'personal_info':
+            selected_option_text = 'Personal Informations'
+        elif form_type == 'uni_info':
+            selected_option_text = 'University Informations'
+        elif form_type == 'address_info':
+            selected_option_text = 'Address Informations'
+
+        # Resmi işleyip sonucu alıyoruz
+        img = cv2.imread(file_path)
+        result = process_image(form_type, img)
+    
+        print(type(result))
+        print(result)
+        result.update({"name": name, "surname": surname, "form_type": selected_option_text})
+        return render_template('result.html', result=result)
 
     return render_template('upload.html')
 

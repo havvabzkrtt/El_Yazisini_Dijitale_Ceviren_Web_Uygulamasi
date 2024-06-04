@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload Image</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
     <style>
     body {
-        background-color: #f5f5f5;  /* Hafif gri tonu */
-        color: #333333; /* Orta koyulukta gri */
-        font-family: Arial, sans-serif; /* Genel font ailesi */
+        background-color: #f5f5f5;
+        color: #333333;
+        font-family: Arial, sans-serif;
     }
     .container {
-        background-color: #bbdefb;  /* Açık pastel mavi */
+        background-color: #bbdefb;
         padding: 30px;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -22,23 +23,22 @@
         margin-bottom: 30px;
     }
     .btn-primary {
-        background-color: #185486;  /* Açık pastel mavi */
-        color: #ffffff; /* Buton metin rengi gri */
-        padding: 10px 20px; /* Buton iç boşluğu */
-        border-radius: 5px; /* Buton kenar yuvarlaklığı */
-        cursor: pointer; /* İmleç değişimi */
+        background-color: #185486;
+        color: #ffffff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
     }
     .btn-primary:hover {
-            background-color: #185486;  /* Daha canlı pastel mavi hover rengi */
-            color: #fff; /* Buton metin rengi beyaz */
-        }
-    
+        background-color: #185486;
+        color: #fff;
+    }
     h1 {
-        font-size: 3em; /* Büyük font boyutu */
-        font-family: "Arial Black", sans-serif; /* Kalın ve çekici bir font */
-        text-shadow: 2px 2px 4px white; /* Hafif gölgelendirme */
-        color: #185486; /* Canlı mavi */
-        text-align: center; /* Başlık ortalanmış */
+        font-size: 3em;
+        font-family: "Arial Black", sans-serif;
+        text-shadow: 2px 2px 4px white;
+        color: #185486;
+        text-align: center;
     }
     h2 {
         color: #185486;
@@ -46,28 +46,88 @@
     }
     p {
         font-weight: bold;
-        color: #185486; /* Açık pastel mavi */
+        color: #185486;
     }
     .form-group label {
-        font-weight: bold; /* Metni kalın yap */
-        color: #185486;/* Açık pastel mavi */
+        font-weight: bold;
+        color: #185486;
+    }
+    .img-container {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    #image, #croppedImageDisplay {
+        max-width: 100%;
     }
     </style>
 </head>
 <body>
     <div class="container mt-5">
-        
         <h2 class="text-center">Image Upload</h2>
         <form action="/upload" method="post" enctype="multipart/form-data" class="mt-4">
             <div class="form-group">
                 <label for="file">Please upload image:</label>
                 <input type="file" id="file" name="file" class="form-control-file" accept="image/*" required>
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Upload</button>
+            <div class="img-container">
+                <img id="image" src="#" alt="Image to crop" style="display: none;">
+            </div>
+            <div class="img-container">
+                <img id="croppedImageDisplay" src="#" alt="Cropped Image" style="display: none;">
+            </div>
+            <input type="hidden" id="croppedImage" name="croppedImage">
+            <button type="button" id="cropButton" class="btn btn-primary btn-block" style="display: none;">Crop</button>
+            <button type="submit" id="uploadButton" class="btn btn-primary btn-block" disabled>Upload</button>
         </form>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+    let cropper;
+    const fileInput = document.getElementById('file');
+    const image = document.getElementById('image');
+    const croppedImageDisplay = document.getElementById('croppedImageDisplay');
+    const cropButton = document.getElementById('cropButton');
+    const uploadButton = document.getElementById('uploadButton');
+    const croppedImageInput = document.getElementById('croppedImage');
+
+    fileInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                image.src = e.target.result;
+                image.style.display = 'block';
+                cropButton.style.display = 'block';
+                if (cropper) {
+                    cropper.destroy();
+                }
+                cropper = new Cropper(image, {
+                    viewMode: 1
+                });
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    cropButton.addEventListener('click', () => {
+        const canvas = cropper.getCroppedCanvas();
+        canvas.toBlob((blob) => {
+            const reader = new FileReader();
+            reader.onload = () => {
+                const croppedImageURL = reader.result;
+                croppedImageDisplay.src = croppedImageURL;
+                croppedImageDisplay.style.display = 'block';
+                croppedImageInput.value = croppedImageURL;
+                uploadButton.disabled = false;
+            };
+            reader.readAsDataURL(blob);
+        }, 'image/jpeg');
+    });
+    </script>
 </body>
 </html>
+
+
+

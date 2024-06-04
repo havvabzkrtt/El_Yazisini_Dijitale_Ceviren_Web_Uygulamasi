@@ -18,10 +18,6 @@ from line_segmentation import line_segment
 from convert_and_letter_segmentation import convert_img, letter_segment
 from prediction import label_list_number, label_list
 """
-print("yoksa burda mı??????")
-# Ne kadar süre çalışıyor ve ne kadar bellek harcıyor
-
-
 
 def process_line(line, row_index, indis_list):
     convert_image = convert_img(line)
@@ -45,9 +41,6 @@ def extract_info(img, num_rows, dict_indis, indis_list):
 
     for line in segment_line_list:
         print(type(line))
-        #cv2.imshow("LineSegment Resim", line)
-        #cv2.waitKey(0)
-        
         processed_label = process_line(line, row_index, indis_list)
         dictionary[dict_indis[row_index]] = processed_label
         
@@ -60,13 +53,13 @@ def extract_info(img, num_rows, dict_indis, indis_list):
 
 def uni_info(img):
     dict_indis = ["ID: ", "Name: ", "Surname: ", "University: ", "Faculty: ", "Department: ", "Student Number: "]
-    indis_list = [0, 6]
+    indis_list = [0, 6] #rakam içeren indisler
     return extract_info(img, 7, dict_indis, indis_list)
 
 def personal_info(img):
-    dict_indis = ["ID: ", "Identification Number: ", "Gender: ", "Birth Year: "]
-    indis_list = [0, 1, 3]
-    return extract_info(img, 4, dict_indis, indis_list)
+    dict_indis = ["ID: ", "Identification Number: ", "Gender: ", "Birth Year: ", "Birthplace: ", "Disease: ", "Phone Number: "]
+    indis_list = [0, 1, 3, 6]
+    return extract_info(img, 7, dict_indis, indis_list)
 
 def address_info(img):
     dict_indis = ["ID: ", "Country: ", "City: ", "Zipcode: ", "Street Number: ", "Apartment Number: "]
@@ -80,15 +73,13 @@ result_dict = uni_info(img)
 
 
 def process_image(form_type, img):
-    #cv2.imshow("LineSegment Resim", img)
-    #cv2.waitKey(0)
     if form_type == "personal_info":  # Personal Info
         result = personal_info(img)
         print(result)
     elif form_type == "uni_info":  # University Info
         result = uni_info(img)
         print(result)
-    elif form_type == "address_info":  # Contact Info
+    elif form_type == "address_info":  # Address Info
         result = address_info(img)
         print(result)
     else:
@@ -96,11 +87,3 @@ def process_image(form_type, img):
     
     result.update({"form_type": form_type})
     return result
-
-
-#print("---------------------------------")
-#print(result_dict)
-#print("---------------------------------")
-#print(result_dict["ID: "])
-#print("---------------------------------")
-
