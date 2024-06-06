@@ -40,7 +40,7 @@ def upload():
         # Base64 verisini çöz ve resmi kaydet
         cropped_image_data = cropped_image_data.split(',')[1]
         cropped_image_bytes = base64.b64decode(cropped_image_data)
-        filename = secure_filename("cropped_image.jpg")
+        filename = secure_filename("cropped_image.png")
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         
         with open(file_path, "wb") as f:

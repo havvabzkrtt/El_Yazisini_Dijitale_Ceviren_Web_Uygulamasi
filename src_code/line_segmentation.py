@@ -25,12 +25,11 @@ def line_segment(image, num_rows):
         row_images.append(row_image)
 
     return row_images
-
 """
 num_rows = 7
 
 # read image, prepare it by resizing it to fixed height and converting it to grayscale
-img = cv2.imread("./sablon_form/form1.PNG")
+img = cv2.imread("./sablon_form/uni-info.jpg")
 
 
 if img is None:
