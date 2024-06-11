@@ -1,13 +1,13 @@
-from flask import Flask, request, render_template, redirect, url_for, session, send_file
+from flask import Flask, request, render_template, redirect, url_for, session
 import os
 from werkzeug.utils import secure_filename
-from src_code.main import process_image  # process_image fonksiyonunu içe aktarıyoruz
+from src_code.main import process_image  
 import cv2
 import base64
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'your_secret_key'  # Form verilerini saklamak için gerekli
+app.config['SECRET_KEY'] = 'your_secret_key'  
 app.config['UPLOAD_FOLDER'] = 'uploads/'
 app.config['ALLOWED_EXTENSIONS'] = {'png', 'jpg', 'jpeg'}
 
@@ -37,7 +37,6 @@ def upload():
         if not cropped_image_data:
             return "Cropped image data is missing!"
 
-        # Base64 verisini çöz ve resmi kaydet
         cropped_image_data = cropped_image_data.split(',')[1]
         cropped_image_bytes = base64.b64decode(cropped_image_data)
         filename = secure_filename("cropped_image.png")
