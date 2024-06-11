@@ -54,8 +54,8 @@ def process_line(line, row_index, indis_list):
     list_of_words = []
     if row_index in indis_list:  # This list covers specific rows for numbers
         convert_image = convert_img(line)
-        cv2.imshow("Convert Word", convert_image)
-        cv2.waitKey(0)
+        #cv2.imshow("Convert Word", convert_image)
+        #cv2.waitKey(0)
         components = letter_segment(convert_image)
         label_number = label_list_number(components)
         combined_label_number = "".join(map(str, label_number))
@@ -64,11 +64,11 @@ def process_line(line, row_index, indis_list):
     else:
         words = word_segment(line)
         for word in words:
-            cv2.imshow("Word", word)
-            cv2.waitKey(0)
+            #cv2.imshow("Word", word)
+            #cv2.waitKey(0)
             convert_image = convert_img(word)
-            cv2.imshow("Convert Word", convert_image)
-            cv2.waitKey(0)
+            #cv2.imshow("Convert Word", convert_image)
+            #cv2.waitKey(0)
             components = letter_segment(convert_image)
             label = label_list(components)
             combined_label = "".join(label).title()
@@ -98,9 +98,9 @@ def uni_info(img):
     dict_indis = ["ID: ", "Name: ", "Surname: ", "University: ", "Faculty: ", "Department: ", "Student Number: "]
     indis_list = [0, 6] #rakam içeren indisler
     return extract_info(img, 7, dict_indis, indis_list)
-    #dict_indis = ["ID: ", "Name: "]
-    #indis_list = [0] #rakam içeren indisler
-    #return extract_info(img, 2, dict_indis, indis_list)
+    #dict_indis = ["Name: "]
+    #indis_list = [] #rakam içeren indisler
+    #return extract_info(img, 1, dict_indis, indis_list)
 
 def personal_info(img):
     dict_indis = ["ID: ", "Identification Number: ", "Gender: ", "Birth Year: ", "Birthplace: ", "Disease: ", "Phone Number: "]
