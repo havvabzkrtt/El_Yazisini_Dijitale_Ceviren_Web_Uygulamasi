@@ -95,31 +95,32 @@ def letter_segment(image):
 
 
 
-
+"""
 
 # Resmi yükle
-"""
-resim_yolu = "./outputs/havva.png"            
+
+resim_yolu = "./inputs/ahmet.png"            
 resim = cv2.imread(resim_yolu)
-"""
-# donusturulmus_resim = convert_img(resim)
+
+donusturulmus_resim = convert_img(resim)
 
 # Dönüştürülmüş resmi göster
-"""
+
 cv2.imshow("Dönüştürülmemiş Resim", resim)
 cv2.imshow("Dönüştürülmüş Resim", donusturulmus_resim)
 # cv2.imwrite("donusmus_resim.png", donusturulmus_resim)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
-"""
-
-#components = letter_segment(donusturulmus_resim)
 
 
-"""
-cv2.imwrite("outputs/Merhaba.png", donusturulmus_resim)
+components = letter_segment(donusturulmus_resim)
+
+
+
+cv2.imwrite("outputs/ahmet_donusmus.png", donusturulmus_resim)
 for idx, component in enumerate(components, start=1):
     cv2.imshow(f'Bileşen {idx}', component)
+    cv2.imwrite(f'outputs/ahmet_{idx}.png', component)
     cv2.waitKey(0)  # Bir tuşa basılana kadar beklet
     cv2.destroyAllWindows()  # Pencereyi kapat
 

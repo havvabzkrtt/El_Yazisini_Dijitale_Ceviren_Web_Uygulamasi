@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 def line_segment(image, num_rows):
     # Resmin boyutlarını alın
-    height, width, _= image.shape
+    height, width, _ = image.shape
 
     # Her bir satırın yüksekliğini hesaplayın
     row_height = height // num_rows

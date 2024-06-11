@@ -28,7 +28,7 @@ def list_predict_image(component):
 def label_list(image_list):
     predicted_labels = []
     for img in image_list:
-        #cv2.imshow("Harf", img)
+        #cv2.imshow("Letter", img)
         #cv2.waitKey(0)
         predicted_label = list_predict_image(img)
         predicted_label = predicted_label[0]
