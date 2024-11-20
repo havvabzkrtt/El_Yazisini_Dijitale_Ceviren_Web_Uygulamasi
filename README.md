@@ -53,7 +53,7 @@ _Şekil 1: Sistem Çalışma Şeması_
    - Aynı zamanda PDF dosyası olarak indirilebilir hale getirilir.
 
 
-[📹 Web Uygulamasının Örnek Bir Kullanımının Videosunu İzlemek İçin Tıklayın]([https://drive.google.com/file/d/your-file-id/view?usp=sharing](https://drive.google.com/file/d/1DPAPBaXmMQwd0uG6VMSnR4J3NKavsu2Z/view?usp=drive_link))
+[📹 Web Uygulamasının Örnek Bir Kullanımının Videosunu İzlemek İçin Tıklayın](https://drive.google.com/file/d/your-file-id/view?usp=sharing](https://drive.google.com/file/d/1DPAPBaXmMQwd0uG6VMSnR4J3NKavsu2Z/view?usp=drive_link)
 
 <video width="600" controls>
   <source src="path/to/your-video.mp4" type="video/mp4">
