@@ -14,7 +14,7 @@ Projenin genel çalışma yapısı şu aşamalardan oluşur:
 
 Aşağıdaki şema, sistemin genel yapısını özetlemektedir:
 
-![Sistemin Genel Çalışma Şeması](yontem_sema.PNG)  
+![Sistemin Genel Çalışma Şeması](yontem_sema.png)  
 _Şekil 1: Sistem Çalışma Şeması_
 
 ### Yöntem Detayları
