@@ -84,5 +84,5 @@ _Şekil 1: Sistem Çalışma Şeması_
 
 ## İletişim
 Daha fazla bilgi için:
-- Ayşegül Toptaş: [email@example.com](mailto:email@example.com)
-- Havvanur Bozkurt: [email@example.com](mailto:email@example.com)
+- Ayşegül Toptaş: [aysegulltoptass@gmail.com](mailto:aysegulltoptass@gmail.com)
+- Havvanur Bozkurt: [havvabzkrt35@gmail.com](mailto:havvabzkrt35@gmail.com)
