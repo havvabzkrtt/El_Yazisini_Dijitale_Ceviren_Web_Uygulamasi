@@ -52,7 +52,7 @@ _Şekil 1: Sistem Çalışma Şeması_
    - İşlenen metin tablo formatında ekranda gösterilir.
    - Aynı zamanda PDF dosyası olarak indirilebilir hale getirilir.
 
-Aşağıda arayüzden örnek bir görüntü sunulmuştur:
+Aşağıda web uygulamasının örnek bir kullanımı sunulmuştur:
 
 [![Tanıtım Videosunu İzle](https://via.placeholder.com/600x300?text=Video+Thumbnail)]([https://drive.google.com/file/d/your-file-id/view?usp=sharing](https://drive.google.com/file/d/1DPAPBaXmMQwd0uG6VMSnR4J3NKavsu2Z/view?usp=drive_link))
 
