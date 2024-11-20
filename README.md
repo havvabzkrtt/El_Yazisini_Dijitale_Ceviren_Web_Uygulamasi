@@ -54,7 +54,7 @@ _Şekil 1: Sistem Çalışma Şeması_
 
 Aşağıda arayüzden örnek bir görüntü sunulmuştur:
 
-![Web Uygulaması Arayüzü](path/to/interface_image.png)  
+[![Tanıtım Videosunu İzle](https://via.placeholder.com/600x300?text=Video+Thumbnail)]([https://drive.google.com/file/d/your-file-id/view?usp=sharing](https://drive.google.com/file/d/1DPAPBaXmMQwd0uG6VMSnR4J3NKavsu2Z/view?usp=drive_link))
 
 <video width="600" controls>
   <source src="path/to/your-video.mp4" type="video/mp4">
